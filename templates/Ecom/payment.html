@@ -1,0 +1,68 @@
+
+{% extends 'Ecom/base.html' %}
+{% block title%} Checkout - My Awesome Cart{% endblock %}
+{% block body %}
+
+<br><br>
+<div class="container" align="center">
+    <br>
+    <marquee scrolldelay="50">ITS FAKE PAYMENT PAGE. WE DONOT STORE YOUR DATA</marquee>
+            <marquee scrolldelay="50">ITS JUST FOR DEMO</marquee>
+<br><br>
+<!--<h1>Redirecting you to the merchant....</h1>
+<h1>Please do not refresh your page....</h1>-->
+    <br><br>
+<h1 class="text" style="color:red;">Razorpay Gatway........</h1>
+    <br>
+    <button class="btn btn-warning"  type="submit"  id="rzp-button1"><h4>Proceed to Pay</h4></button>
+    <br><br><br><br>
+<button>
+<a class="button" style="btn btn-primary" href="{% url 'home' %}" >back to home </a>
+</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
+
+    "name": "AB Shop",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+        alert("your order is success full")
+
+
+    },
+    "prefill": {
+        "name": "Alfacito Coder",
+        "email": "alfacitocoder@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#ff0000"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock %}

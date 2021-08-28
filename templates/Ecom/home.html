@@ -1,0 +1,63 @@
+{% extends "Ecom/base.html" %}
+{% block title%}This is my home page  {% endblock %}
+ {% block css %}
+.checked {
+  color: orange;
+}
+{% endblock %}
+
+ {% block body %}
+Code by- Bhawan sharma (alfacito)
+{% load static %}
+{%if products%}
+
+  <h3 style="text-align:center; color:yellow;">{{word}}</h3>
+
+<br>
+<br>
+
+<div class="container ">
+    <div class="row">
+        {% for p in products %}
+        <div class="card" style="width: 17rem;" >
+            <img src="{% static p.product_image.url %}" class="card-img-top" width="225" height="200" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{p.name}}</h5>
+                <p class="card-text">{{p.description|slice:"0:28"}}...</p>
+                <span class="fa fa-star checked"></span>
+             <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+                <a class="cart" href="{% url 'add-to-cart' p.id  %}">
+                    <h6 class="card-title">₹ {{p.price}}</h6>
+                    <span class="add-to-cart">
+                        <button class="btn btn-danger cart">Add To Cart</button>
+                        <a href="/productview/{{p.id}}"><button id="qv{{p.id}}" class="btn btn-danger cart">QuickView</button></a>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+{% if forloop.counter|divisibleby:"4" and forloop.counter > 0 and not forloop.last %}
+    </div>
+
+    <div class="row">
+          <br><br><br><br><br>
+{% endif %}
+
+  {% endfor %}
+    </div>
+</div>
+
+{%else%}
+<h3 style="text-align:center; color:yellow;">No Search Found</h3>
+{%endif%}
+
+{% endblock %}
+
+
+
+ {% block js %}
+
+{% endblock %}

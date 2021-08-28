@@ -1,0 +1,61 @@
+{% extends "Ecom/base.html" %}
+{% load static %}
+{% block title%}This is my cart page  {% endblock %}
+
+ {% block css %}
+
+{% endblock %}
+
+ {% block body %}
+Code by- Bhawan sharma (alfacito)
+-->
+<br><br><br><br>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 style="text-align:center;" class="panel-title">My Cart list</h3>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Remove From Cart</th>
+
+        </tr>
+      </thead>
+      {% for p in products %}
+       {% if p %}
+
+      <tr>
+        <td> {{p.name}}</td>
+        <td> <img src="{% static p.product_image.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+        <td>{{p.price}}</td>
+        <td>{{p.description}}</td>
+
+        <td><a class="btn btn-danger" href="{% url 'remove-from-cart' p.id  %}"><span>Remove</span></a></td>
+
+      </tr>
+      {%else%}
+      <br><br><br>
+      <h1>no products</h1>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<br><br><br>
+<div style="text-align: center;">
+  <button class="btn btn-danger">Total Amount = ₹ {{total}}</button>
+  <a href="/customeraddress"><button class="btn btn-warning" ><span>Purchase </span></button></a>
+</div>
+
+
+<br><br><br><br><br>
+<!--
+developed By : alfacito
+
+{% endblock %}
