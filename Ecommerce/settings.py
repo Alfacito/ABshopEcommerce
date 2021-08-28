@@ -28,7 +28,7 @@ SECRET_KEY = 'kybjv#o$bcxupidrxp2sz)w#)g+6uu@5l=j58cs-52awetp&qn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','ab-shopping-kart.herokuapp.com']
 
 
 # Application definition
