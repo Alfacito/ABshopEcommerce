@@ -127,8 +127,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS=[STATIC_DIR,]
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT=os.path.join(BASE_DIR,'static')
+
 
 #Payment gateway
 RAZORPAY_API_KEY='rzp_test_lMbW52HiYUESqz'
